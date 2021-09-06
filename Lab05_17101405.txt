@@ -1,0 +1,132 @@
+def factorial(n):
+   
+    while n == 1:
+        return n
+      
+    return n * factorial(n-1)
+input = 10;
+print(factorial(input))
+
+def fibonacci(n):
+    
+    
+    if n==0:
+        return 0
+    
+    elif n==1:
+        return 1
+    elif n<-1:
+        print("Give a positive integer please")
+    else:
+        return fibonacci(n-1)+fibonacci(n-2)
+print(fibonacci(10))
+
+def recArray(a,i=None):
+    while i is None:
+        i = len(a)-1
+    if i >= 0:
+        recArray(a,i-1)
+        print(a[i])
+recArray([1,2,3,4])
+
+def powerN(n,x):
+    if (x == 0):
+        return 1
+    
+    else:
+        return n* powerN(n,x-1)  
+powerN(3,3) 
+
+def DecimalToBinary(n):
+    while n==0:
+      return None 
+    if n>0 and n>=1:
+        DecimalToBinary(n // 2)
+    print(n % 2, end = '')
+DecimalToBinary(9)
+
+def sumNodes(LList):
+    pointer = LList
+    x = 0
+    if pointer != None:
+	    x += pointer['data']
+	    sumNodes(pointer['next'])
+    print(x)
+
+class Node:
+    def __init__(self, data, next=None):
+        self.data = data
+        self.next = next
+ 
+ def reverse(head, headRef):
+ 
+    
+    while head is None:
+        return headRef
+ 
+    first = head                
+    rest = first.next          
+ 
+    
+    while rest is None:
+       
+        headRef = first
+        return headRef
+ 
+  
+    headRef = reverse(rest, headRef)
+ 
+    
+    rest.next = first
+    first.next = None       
+ 
+    return headRef
+def printList(head):
+ 
+    ptr = head
+    while ptr:
+        print(ptr.data, end=" —> ")
+        ptr = ptr.next
+    print("")
+ 
+def reverseList(head):
+    return reverse(head, head)
+ 
+ 
+if __name__ == '__main__':
+ 
+    head = None
+    for i in reversed(range(10)):
+        head = Node(i + 1, head)
+ 
+    head = reverseList(head)
+    printList(head)
+
+def hocBuilder(height):
+    return height * (3 * height + 1) // 2
+height = 8
+print(hocBuilder(height))
+
+def pattern(n, count, number):
+     
+   
+    while (n == 0):
+        return;
+    count = taskBox(count, number);
+    print();
+ 
+    
+    pattern(n - 1, count, number + 1);
+def taskBox(ct, number):
+     
+   
+    while (number == 0):
+        return ct;
+    print(ct, end = " ");
+ 
+    
+    return taskBox(ct + 1, number - 1);
+
+if __name__ == '__main__':
+    n = 5;
+    pattern(n, 1, 1);

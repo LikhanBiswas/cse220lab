@@ -1,0 +1,211 @@
+#task01
+def arrayBasedStack(strng):
+    
+    open_stack = ['(','{','[']
+    close_stack = [')','}',']'] 
+    stack = [] 
+
+    while True:
+     for idx in strng: 
+        if idx in open_stack:
+            stack+=[idx]
+        elif idx in close_stack:
+            if (len(stack) is 0):  
+                return f"This expression is NOT correct.Error at character #{strng.index(idx)+1}.'{idx}'-not opened."
+            elif (len(stack) is not 0):
+                
+
+            #pop operation in stack
+             element = stack.pop()
+             element1=open_stack.index(element)
+             element2=close_stack.index(idx)
+ 
+
+             if (element not in open_stack):
+               return f"This expression is NOT correct.\nError at character #{strng.index(element)+1}.'{element}'-not closed."
+
+             elif (element1 is not element2):
+                return f"This expression is NOT correct.\nError at character #{strng.index(element)+1}.'{element}'-not closed."
+
+     return "This expression is correct"
+     end
+
+    
+
+#driver code    
+if __name__ is "__main__":
+    givenStack = "1+2*[3*3+{4–5(6(7/8/9)+10)}–11+(12*8)/{13+13}]+14"
+    check = arrayBasedStack(givenStack)
+    print(check)
+    givenStack1='1+2*(3/4)'
+    check1=arrayBasedStack(givenStack1)
+    print(check1)
+    givenStack2='1+2*[3*3+{4–5(6(7/8/9)+10)–11+(12*8)]+14'
+    check2=arrayBasedStack(givenStack2)
+    print(check2)
+
+
+#task02
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+        self.prev= None
+ 
+class Stack:   
+    def __init__(self):
+        
+        newNode= Node(None)
+        self.head=newNode
+        self.tail=newNode
+        newNode.prev=newNode
+        newNode.next=newNode
+    def push(self, data):  
+        if self.head is None:
+            self.head = Node(data)
+        
+        if self.head.next is self.head:
+
+            newNode=Node(data)
+            self.head.next=newNode
+            self.head.prev=newNode
+            newNode.next=self.head
+            newNode.prev=self.head
+            return
+        newNode = Node(data)
+        tempNode = self.head.next
+        while tempNode.next is not None:
+            if tempNode.next==self.head:
+                break
+            tempNode = tempNode.next
+            
+        newNode.next = tempNode.next
+        newNode.prev = tempNode
+        newNode.next.prev = newNode
+        tempNode.next = newNode
+    def pop(self):  
+        if self.head is None:
+            return None
+        
+        pop=self.head.prev.data
+        popNode=self.head.prev
+        self.head.prev=popNode.prev
+        popNode.prev.next=self.head
+        return pop
+    def Listisempty(self):
+        if self.head is None:
+            return True
+        else:
+            return False
+        n=self.head.next
+        if n.next is None:
+            print ("empty list")
+        else:
+            while n.next is not None:                        
+                print (n.data,'Valid', end=' ')
+                if n.next==self.head:
+                    break
+                n=n.next
+
+    
+    
+ 
+    def lenth(self):
+        if self.head is None:
+            return None
+        n=self.head.next
+        c=0
+        while n.data is not None:
+            c+=1
+            n= n.next
+        return c
+
+def index(list,brket):
+    cn=0
+    for i in list:
+        cn+=1
+        if i is brket:
+            return cn
+            break  
+
+def LinkedListBasedStack(list):
+    
+  while True:
+    open_stack = ['(','{','[']
+    close_stack = [')','}',']']
+    stk=Stack()
+    c=0
+  
+    for i in list:
+       
+        if i in open_stack:
+            
+            stk.push(i)
+            
+        elif i in close_stack :
+            if stk.lenth() is 0:
+                c=0
+                for j in range (0,len(list)):
+                    if lst[j] is i:
+                        break
+                    c+=1
+                    
+                
+                return f'This expression is NOT correct.\nError at character #' , c+1,'. ', i,'- not opened.'
+
+            pop1=stk.pop()
+
+
+            
+            
+            if i is ')' :
+                if pop1 is not "(" :
+                    c=0
+                    for j in range (0,len(list)):
+                        print (list[j])
+                        if list[j] is pop1:
+                            
+                            break
+                        c+=1
+                        
+                   
+                    return f'This expression is NOT correct.\nError at character #' , c+1,'. ', pop1,'- not opened.'
+
+            elif i is '}':
+                if pop1 is not "{":
+                    c=0
+                    for j in range (0,len(list)):
+                        if lst[j] is pop1:
+                            
+                            break
+                        c+=1
+                        
+                    
+                    return f'This expression is NOT correct.\nError at character #' , c+1,'. ', pop1,'- not opened.'
+
+            elif i is ']':
+                if pop1 is not "[":
+                    c=0
+                    for j in range (0,len(list)):
+                        if list[j] is pop1:
+                            break
+                        c+=1
+
+                    return f'This expression is NOT correct.\nError at character #' , c+1,'. ', pop1,'- not closed.'
+
+
+    return 'This expression is correct.'
+    end
+
+
+#driver code    
+if __name__ is "__main__":
+    givenStack = "1+2*[3*3+{4–5(6(7/8/9)+10)}–11+(12*8)/{13+13}]+14"
+    check = LinkedListBasedStack(givenStack)
+    print(check)
+    givenStack1='1+2*(3/4)'
+    check1=LinkedListBasedStack(givenStack1)
+    print(check1)
+    givenStack2='1+2*[3*3+{4–5(6(7/8/9)+10)–11+(12*8)]+14'
+    check2=LinkedListBasedStack(givenStack2)
+    print(check2)

@@ -1,0 +1,289 @@
+#task1
+a=[4,5,9,-2,-5]
+def SelecttionSort(a,s): 
+        while s==-1 or s==0:
+            return a
+        topValue=s-1
+        for c in reversed(range(s-1)): #using built in function
+            if a[c]>a[topValue] or a[c]>=a[topValue]:
+                topValue = c
+        tempvalue = a[topValue]
+        a[topValue] = a[s-1]
+        a[s-1] = tempvalue
+        return SelecttionSort(a,s-1)
+SelecttionSort(a,5)
+
+#task2
+a=[4,5,9,-2,-5]
+def InsertionSort(a,s):
+    if s is len(a):
+        return a
+    elif s is not len(a):
+        return None
+    else:
+        for c in range(s-1,-1,-1):
+            if (a[c+1]<a[c]) or (a[c+1]<=a[c]) :
+                a[c],a[c+1] = a[c+1],a[c]
+            else:
+                return None
+        return InsertionSort(a,s+1)
+InsertionSort(a,5)
+
+#task03
+def BubbleSort(self):
+    end = None
+    if  end is not self.startNode:
+        a = self.startNode
+        b = self.startNode
+    
+        
+        if b.ref is not  end:
+            c = b.ref
+            if b.item > c.item:
+                b.ref is c.ref
+                c.ref is b
+            elif b.item < c.item:
+                return None
+                if b is not  self.startNode:
+                    a.ref is c
+                elif b is self.startnode:
+                    return None 
+                else:
+                    self.starNode = c
+                b,c = c,b
+            a = b
+            b = b.ref
+        end = b
+
+#task 04
+class Node:  
+    def __init__(self, data):  
+        self.data = data  
+        self.next = None
+
+ 
+
+
+def recurSelectionSort( head) : 
+
+   
+    if (head.next is None) : 
+        return head  
+    
+        
+     
+    min = head  
+
+      
+    beforeMin = None
+    ptr = head 
+
+     
+    while ( ptr.next is not None ) : 
+
+         
+        if (ptr.next.data < min.data) : 
+
+            min = ptr.next
+            beforeMin = ptr  
+
+        ptr = ptr.next
+
+   
+    if (min is not head) : 
+        head = swapNodes(head, head, min, beforeMin)  
+
+ 
+    head.next = recurSelectionSort(head.next)  
+
+    return head  
+
+
+def sort( head_pointer) : 
+
+    
+    if ((head_pointer) == None) : 
+        return None
+
+    
+    head_pointer = recurSelectionSort(head_pointer)  
+    return head_pointer 
+
+ 
+def push( head_pointer, new_data) : 
+
+    new_node = Node(0)  
+
+    new_node.data = new_data  
+
+    new_node.next = (head_pointer)  
+
+    (head_pointer) = new_node  
+    return head_pointer 
+
+def printList( head) : 
+
+    while (head is not None) : 
+
+        print( head.data ,end = " ")  
+        head = head.next
+def swapNodes(head_pointer, X, Y, Z) : 
+
+    head_pointer = Y  
+    Z.next = X  
+
+    temp_value = Y.next
+    Y.next = X.next
+    X.next = temp_value  
+    return head_pointer 
+
+
+#driver code
+head = None
+
+
+head = push(head, 1)  
+head = push(head, 2)  
+head = push(head, 3)  
+head = push(head, 10)  
+head = push(head, 12)  
+
+
+printList(head)  
+
+
+head = sort(head)  
+
+  
+printList(head)  
+
+#task05
+class Node :
+
+  def __init__(self, value) :
+    self.data = value
+    self.next = None
+    self.prev = None
+  
+
+class DLinkedList :
+
+  def __init__(self) :
+    self.head = None
+    self.tail = None
+  
+  def insert(self, value) :
+    node = Node(value)
+    if (node == None) :
+      
+      return
+    
+    if (self.head == None) :
+      self.head = node
+      self.tail = node
+    else :
+      node.prev = self.tail
+      self.tail.next = node
+      self.tail = node
+    
+  
+  def display(self) :
+    temp = self.head
+    if (temp == None) :
+     
+      return
+    
+    
+    while (temp != None) :
+      print(temp.data ,end="  ")
+      temp = temp.next
+    
+    temp = self.tail
+    print("\n Tail to Head Nodes :  ")
+    while (temp != None) :
+      print(temp.data ,end="  ")
+      temp = temp.prev
+    
+  
+  def swap(self, first, second) :
+    temp = first.data
+    first.data = second.data
+    second.data = temp
+  
+  def insertion_sort(self) :
+    front = self.head
+    back = None
+    while (front != None) :
+      back = front.next
+      while (back != None and back.prev != None) :
+        if (back.data < back.prev.data) :
+          self.swap(back, back.prev)
+          back = back.prev
+        else :
+          break
+        
+      
+      front = front.next
+    
+  
+if __name__ == "__main__":
+  main()
+
+def main() :
+  a = DLinkedList()
+  a.insert(25)
+  a.insert(2)
+  a.insert(6)
+  a.insert(1)
+  a.insert(12)
+  a.insert(9)
+  a.insert(16)
+  a.insert(3)
+  print("\n Before Sort")
+  a.display()
+  a.insertion_sort()
+  print("\n After Sort")
+  a.display()
+
+#task06
+def findValue(numbers, number_to_find, low, high):
+	if high >= low:
+		middle = low + (high - low) // 2
+
+		if numbers[middle] == number_to_find:
+			return middle
+		elif numbers[middle] < number_to_find:
+			return findValue(numbers, number_to_find, middle + 1, high)
+		else:
+			return findValue(numbers, number_to_find, low, middle - 1)
+	
+	else:
+		return -1
+numbers = [1, 2, 50, 100, 150]
+number_to_find = 50
+
+final = findValue(numbers, number_to_find, 0, len(numbers) - 1)
+
+if final == -1:
+	print("This item was not found in the list.")
+else:
+	print("The number " + str(number_to_find) + " was found at index position " + str(final) + ".")
+
+#task07
+def fib(n):
+    def fib_memo(n, m):
+      
+        if n in m:
+            return m[n]
+
+        answer = fib_memo(n - 1, m) + fib_memo(n - 2, m)
+        m[n] = answer
+        return answer
+
+    m = {1: 1, 2: 1}
+    return fib_memo(n, m)
+
+
+print(fib(40))   
+print(fib(100)) 
+print(fib(40)) 
