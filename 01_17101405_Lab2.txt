@@ -1,0 +1,395 @@
+#.............task01...............
+
+#(i)
+class Node:
+     def __init__(self,newElement):
+         self.newElement=newElement
+         self.reference=None
+#(ii)
+class MyList:
+    def __init__(self):
+        self.head= None
+
+#.............task02...............
+!pip install multipledispatch
+class Node:
+     def __init__(self,newElement):
+         self.newElement=newElement
+         self.reference=None
+
+class MyList:
+    def __init__(self):
+        self.head= None
+
+    def MyList(self,newElement= None):          #.................[2.1]
+          for a in newElement:
+              newNode=Node(a)
+              newNode.reference= self.head
+              self.head=newNode
+
+
+    def showList(self):             #...........................[2.2]
+         if self.head is None:
+            print('Empty list')
+         else:
+            x=self.head
+            while x is not None:
+                print(x.newElement,'---->', end=' ')
+                x= x.reference
+
+    def isEmpty(self):              #.........................[2.3]
+        if self.head is None:
+            print("true")
+        else:
+            print('false')
+
+    def clear(self):            #................................[2.4]
+        self.head=None
+        while self.head is not None:
+            self.newElement=None
+    
+    
+    from multipledispatch import dispatch
+    @dispatch(int)
+
+    def insert(self,newElement):      #............................[2.5]
+        newNode=Node(newElement)
+        if self.head is None:
+             self.head= newNode
+        else:
+            x=self.head
+            while x.reference is not None:
+                x=x.reference
+            x.reference=newNode
+    
+    @dispatch(int,int)
+    def insert(self, newElement, index=0):    #......................[2.6]
+        x=self.head
+        b=0
+        temp=None
+        key = False
+        while n.reference is not None:
+            b+=1
+            if x.reference.newElement is newElement:
+                key= True
+            temp=x.newElement
+            x=x.reference
+
+        if b<index:
+            print('Invalid Index')
+        
+        else:
+            x=self.head
+            a=0
+            while x is not None:
+                if a==index:
+                    try:
+                        x1=x.newElement
+                    except :
+                        x1=temp
+                    break
+                temp=x.newElement
+                x=x.ref
+                a+=1
+
+            if self.head is None:
+                print('List is empty')
+                return
+            if key == True:
+                print('Element already exists')
+            else:
+                if self.head.newElement == x1:
+                    newNode= Node(newElement)
+                    newNode.reference= self.head
+                    self.head=newNode
+                    return
+
+                x=self.head
+                while x.reference is not None:
+                    if n.reference.newElement == x1:
+                        break
+                    x=x.reference
+
+                if x.reference is None:
+                    print('Node does not exit')
+                else:
+                    newNode=Node(newElement)
+                    newNode.reference= x.reference
+                    x.reference= newNode
+
+
+    def  remove(self, deletekey):              #................................[2.7]
+        if self.head is None:
+            print('Link list is Empty')
+            return
+        if deletekey== self.head.newElement:
+            self.head= self.head.reference
+            return
+
+        x= self.head
+        while x.reference is not None:
+            if deletekey== x.reference.newElement:
+                break
+            x=x.reference
+
+        if x.reference is None:
+            print('Node not found')   
+        else:
+            x.reference = x.reference.reference   
+
+
+l=[100,55,38]
+print('X')
+m=MyList()
+m.MyList(l)
+m.showList()
+
+print('\n')
+print('Y')
+n=MyList()
+n.isEmpty()
+n.showList()
+
+print('\n')
+print('Z')
+o=MyList()
+o.MyList(l)
+o.showList()
+o.clear()
+o.showList()
+
+print('\n')
+print('P')
+p=MyList()
+p.MyList(l)
+p.insert(100) 
+p.showList()
+
+
+print('\n')
+print('Q')
+q=MyList()
+q.MyList(l)
+q.showList()
+print('\n')
+q.remove(38)
+q.showList()
+
+
+#.................................................task03
+class Node:
+     def __init__(self,newElement):
+         self.newElement=newElement
+         self.reference=None
+
+class MyList:
+    def __init__(self):
+        self.head= None
+
+    def MyList(self,newElement= None):          
+        for a in newElement:
+            newNode=Node(a)
+            if self.head is None:
+                self.head= newNode
+            else:
+                x=self.head
+                while x.reference is not None:
+                    x=x.reference
+                x.reference=newNode
+    def showList(self):             
+        if self.head is None:
+            print('empty')
+        else:
+            x=self.head
+            while x is not None:
+                print(x.newElement,'-->', end=' ')
+                x= x.reference
+
+    def  remove(self,  deletekey):
+        if self.head is None:
+            print('List is Empty')
+            return
+        if  deletekey== self.head.newElement:
+            self.head= self.head.reference
+            return
+
+        x= self.head
+        while x.reference is not None:
+            if  deletekey== x.reference.newElement:
+                break
+            x=x.reference
+
+        if x.reference is None:
+            print('Node does not exist')   
+        else:
+            x.reference = x.reference.reference  
+
+    def add_left(self,newElement):
+        newNode = Node(newElement)
+        newNode.reference = self.head
+        self.head = newNode
+    
+    def add_right(self,newElement):
+        newNode = Node(newElement)
+        if self.head is None:
+            self.head = newNode
+        else:
+            x = self.head
+            while x.reference is not None:
+                x = x.reference
+            x.reference = newNode
+
+    def add_after(self,newElement,y):
+        x = self.head
+        while x is not None:
+            if y==x.newElement:
+                break
+            x = x.reference
+        if x is None:
+            print("node is not in list")
+        else:
+            newNode = Node(newElement)
+            newNode.reference = x.reference
+            x.reference = newNode
+
+    def Even_number(self):  #...........................3.1
+        x = self.head
+        while x is not None:
+            if(x.newElement%2 !=0):
+                self.remove(x.newElement)
+            x=x.reference
+    
+    def Check_Element(self,e): #............................3.2
+        x = self.head
+        key=False
+        while x is not None:
+            if x.newElement== e:
+                key=True
+            x=x.reference
+        print(key)
+
+    def reverse(self):  #..........................3.3
+        x=self.head
+        temp=None
+        while x is not None:
+            new= x.reference
+            x.reference=temp
+            temp=x
+            x=new
+        self.head= temp
+
+    
+    def sort_LinkedList(self):  #.......................3.4
+        x = self.head 
+        i_num = None  
+        if self.head is None:  
+            print('empty')
+        else:  
+            while x is not None:  
+
+                i_num = x.reference 
+                while i_num is not None:  
+                      
+                    if x.newElement > i_num.newElement:  
+                        temp = x.newElement 
+                        x.newElement = i_num.newElement  
+                        i_num.newElement = temp  
+                    i_num = i_num.reference  
+                x= x.reference  
+
+    def Sum(self):  #.........................................3.5
+        x=self.head
+        sum=0
+        while x is not None:
+            sum+=x.newElement
+            x=x.reference
+        print(sum)
+    
+
+
+    def rotate(self,side,step): #..............................3.6
+        x=self.head
+        c=0
+        
+        while x is not None:
+            
+            c+=1
+            x=x.reference
+        
+
+        if side == 'left':
+            x=self.head
+            for a in range(0,step):
+                
+                self.remove(x.newElement)
+                self.add_right(x.newElement)
+                x=x.reference
+        elif side == 'right':
+            x=self.head
+            flip=0
+            for a in range(0,c):
+                if a >= (c-step):
+                   
+                    self.remove(x.newElement)
+                    if flip==0:
+                        self.add_left(x.newElement)
+                        flip+=1
+                        posi_node=x.newElement
+                    elif flip>0 :
+                        self.add_after(x.newElement,posi_node)
+                x=x.reference
+
+
+
+l=[1,2,5,3,8]
+
+m=[3,2,5,1,8]
+
+print('X')
+n=MyList()
+n.MyList(l)
+n.Even_number()
+n.showList()
+
+print('\n')
+print('Y')
+o=MyList()
+o.MyList(l)
+o.Check_Element(8)
+o.showList()
+
+print('\n')
+print('Z')
+p=MyList()
+p.MyList(l)
+p.showList()
+p.reverse()
+print('\n','reverse:')
+p.showList()
+
+
+print('\n')
+print('P')
+q=MyList()
+q.MyList(l)
+q.showList()
+print('\n','sort:')
+q.sort_LinkedList()
+q.showList()
+
+
+print('\n')
+print('Q')
+r=MyList()
+r.MyList(l)
+r.showList()
+print('\n','Sum: ')
+r.Sum()
+
+
+print('\n')
+print('R')
+s=MyList()
+s.MyList(m)
+s.rotate('right',2)
+s.showList()

@@ -1,0 +1,306 @@
+Name: Likhan Biswas
+ID: 17101405
+sec: 01
+
+
+# task 1
+source=[10,20,30,40,50,60]
+
+k=int(input('please input your "k" number of position :'))
+
+def shiftLeft(a,k):
+    if len(a)>=k:
+        for x in range(0,k):
+            if x+k<len(a):
+                a[x]=a[x+k]
+        for x in range(len(a)-k,len(a)):
+            a[x]=0
+        return a
+    else:
+        y =('array length crossed badly')
+        return y
+
+b=shiftLeft(source,k)
+print(b)
+
+
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+# task 2
+source=[10,20,30,40,50,60]
+
+k=int(input('please input your "k" number of position :'))
+
+def rotateLeft(a,k):
+    if len(a)>=k:
+
+        temporary_value1=[]
+        temporary_value2=[]
+
+        for x in a[k:len(a)]:
+            temporary_value1+=[x]
+
+        for x in a[0:k]:
+            temporary_value2+=[x]
+
+        return temporary_value1+temporary_value2
+
+    else:
+        y =('array length crossed badly')
+        return y
+
+print(rotateLeft(source,k))
+
+
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+# task 3
+size=int(input('size :'))
+
+idx=int(input('index :'))
+
+source=[10,20,30,40,50,0,0]
+
+def remove(source,size,idx):
+    x=0
+    for a in source:
+        if a>0:
+            x+=1
+    
+    if len(source)>=size and x>idx:
+        for a in range(0,len(source)):
+            if a>=idx :
+                if a+idx<len(source):
+                    source[a]=source[a+1]
+        for a in range(size-1,len(source)):
+            source[a]=0
+        return source
+    elif size> len(source):
+        return('array size hoy nai dado')
+    elif idx>x:
+        return('wrong index')
+        
+    
+print(remove(source,size,idx))
+
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+# task 4
+source=[10,2,30,2,50,2,2,60,0,0]
+
+size=int(input('Array size :'))
+element=int(input('Element :'))
+
+
+
+def removeAll(source,size,element):
+    x=0
+    for a in source:
+        if a>0:
+            x+=1
+
+    if size==x and element in source:
+        temporary_value=[]
+        for a in source:
+            if a!=element:
+                temporary_value+=[a]
+        temporary_value+= [0]* (len(source)-len(temporary_value))
+        return(temporary_value)
+    elif element not in source:
+        return('input bhul diyechen')
+    elif size!=x:
+        return('array size bhul')
+
+print(removeAll(source,size,element))
+
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+#task 05
+source=[]
+while True:
+    index=input('Enter elements and when you wanna stop, write "exit": ')
+    if index.lower()!="exit":
+        try:
+            source+=[int(index)]
+        except :
+            print('Integer Number:')
+    elif index.lower()=="exit":
+        break
+
+def SplittingArray(source):
+    a=0
+    for z in range(0,len(source)):
+        a+=source[z]
+        b=0
+
+        for w in range(len(source)-1,z,-1):
+            b+=source[w]
+        i=0    
+        if a==b:
+            i=1
+            break
+
+    if i==1:
+        return('true')
+    elif i==0:
+        return('false')
+
+print(SplittingArray(source))
+
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+#task 06
+n=int(input('Enter Number: '))
+source=[0] * (n**2)
+
+def ArraySeries(n):
+    m=n
+    for a in range(0,n):
+        y=0
+        for j in range(len(source)-1-a,0-1,-n):
+            if y<m:
+                source[j]=a+1
+                y+=1
+        m-=1
+    return(source)
+
+print(ArraySeries(n))
+
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+#task 07
+source=[1, 2, 2, 3, 4, 4, 4]
+
+def MaxBunchCount(self):
+    length=[]
+    temporary_value=[[source[0]]]
+
+    for a in range(0,len(source)):
+        if a<len(source)-1:
+            if source[a]==source[a+1]:
+                temporary_value+=([source[a+1]])
+            elif source[a]!=source[a+1]:
+                length+=[len(temporary_value)]
+                temporary_value=[[source[a+1]]]
+
+        elif a==len(source)-1:
+            length+=[len(temporary_value)]
+
+    return(max(length)) 
+
+print(MaxBunchCount(source))
+
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+#task 08
+source=[4,5,6,6,4,3,6,4]
+
+def Repetition(source):
+    l={}
+    m=[]
+    for a in source:
+        c=0
+        for n in source:
+            if a==n:
+                c+=1
+        if c>1:
+            l[a]=c 
+    result=False
+    for k,w in l.items():
+        if w in m:
+            result=True
+            break
+        else:
+            m+=[w]
+
+    if result==True:
+        return('true')
+    else:
+        return('false')
+
+print(Repetition(source))
+
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+#CIRCULAR ARRAY
+#task 01
+source= [10,20,0,0,0,10,20,30]
+start_index = 5
+s = 5
+
+def circulartolinear(ar,m, n):
+    array=[]
+    index=m
+    for i in range(0,n):
+
+        if index not in array:
+            array+=[ar[index]]
+        index=(index+1)% len(ar)
+    return(array)
+
+def palindromeCheck(source,start_index,s):
+    test_source=circulartolinear(source,start_index,s)
+
+    if test_source[::]==test_source[::-1]:
+        x=('True')
+    else:
+        x=('False')
+    
+    return x
+
+print(palindromeCheck(source,start_index,s))   
+
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+#CIRCULAR ARRAY
+#task 02
+circular_array_1=[40,50,0,0,0,10,20,30]
+s1 =5
+size1 =5
+
+
+circular_array_2=[10,20,5,0,0,0,0,0,5,40,15,25]
+s2=8
+size2 =7
+
+def Intersection(ar,m, n):
+    array=[]
+    idx=m
+    for i in range(0,n):
+
+        if idx not in array:
+            array+=[ar[idx]]
+        idx=(idx+1)% len(ar)
+    return(array)
+
+def commonElement(circular_array_1,s1,size1, circular_array_2,s2,size2):
+    array1= Intersection(circular_array_1,s1,size1)
+    array2= Intersection(circular_array_2,s2,size2)
+
+    f_array=[]
+    for i in array1:
+        if i in array2:
+            f_array+=[i]
+    return(f_array)
+
+common_ele=commonElement(circular_array_1,s1,size1, circular_array_2,s2,size2)
+print(common_ele)
+
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+#CIRCULAR ARRAY
+#task 03
+import random
+
+source=[1,2,3,4,5,6,7] 
+
+def musicalchairgame(source):
+    while True:
+        Random_num=random.randint(0,3)
+        if Random_num == 1:
+            position=int(len(source)/2)
+            data=source[position]
+            
+            source = [i for i in source if i != data]
+            
+            if len(source)==1:
+                print('the glorious winner is : ',data)
+                break
+        else:
+            step=1
+            source = source[-step % len(source):] + source[:-step % len(source)]
+            print(source)
+        
+
+
+musicalchairgame(source)
